@@ -1,13 +1,18 @@
 //Feet to Mile Conversion
 
-var mile = feetToMile(5280);
-console.log(Math.round(mile), "Feet");
+var mile = feetToMile(-1);
+if (mile < 0) {
+    console.log(mile);
+} else {
+    console.log(mile, "Feet");
+}
 
 function feetToMile(feet) {
     if (feet < 0) {
         return "Distance can't be negative";
     } else {
-        return feet / 5280;
+        var measure = feet / 5280;
+        return measure.toFixed(3);
     }
 }
 
@@ -33,7 +38,7 @@ const brickPerFeet = 1000;
 var count1, count2, calculateLowerTen, calculateElevenToTwenty, calculateUpperTwenty;
 calculateLowerTen = calculateElevenToTwenty = calculateUpperTwenty = 0;
 count1 = count2 = 0;
-var totalBrick = brickCalculator(11);
+var totalBrick = brickCalculator(20);
 
 if (totalBrick > 0) {
     console.log("Total required", totalBrick, "brick");
