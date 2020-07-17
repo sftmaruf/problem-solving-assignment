@@ -1,7 +1,7 @@
 //Feet to Mile Conversion
 
-var mile = feetToMile(20);
-console.log(mile.toFixed(5), "Feet");
+var mile = feetToMile(5280);
+console.log(Math.round(mile), "Feet");
 
 function feetToMile(feet) {
     if (feet < 0) {
@@ -13,19 +13,19 @@ function feetToMile(feet) {
 
 //Wood Calculator
 
-var total = woodCalculator(1, 2, 3);
+var total = woodCalculator(1, 2, 0);
 if (total >= 0) {
-    console.log("You have to pay total: ", total, "taka");
+    console.log("You require total", total, "cubic feet wood");
 } else {
     console.log(total);
 }
 
 
-function woodCalculator(chair, table, bed) {
-    if (chair < 0 || table < 0 || bed < 0) {
+function woodCalculator(amountChair, amountTable, amountBed) {
+    if (amountChair < 0 || amountTable < 0 || amountBed < 0) {
         return "Please try again.Your input isn't valid";
     }
-    return (chair * 1) + (table * 3) + (bed * 5);
+    return (amountChair * 1) + (amountTable * 3) + (amountBed * 5);
 }
 
 //Brick Calculator
@@ -33,33 +33,42 @@ const brickPerFeet = 1000;
 var count1, count2, calculateLowerTen, calculateElevenToTwenty, calculateUpperTwenty;
 calculateLowerTen = calculateElevenToTwenty = calculateUpperTwenty = 0;
 count1 = count2 = 0;
-var totalBrick = brickCalculator(23);
-console.log("Total require",totalBrick,"brick");
+var totalBrick = brickCalculator(11);
+
+if (totalBrick > 0) {
+    console.log("Total required", totalBrick, "brick");
+} else {
+    console.log(totalBrick);
+}
+
 
 function brickCalculator(floor) {
 
-    for (var i = 1; i <= floor; i++) {
-        if (i <= 10) {
-            calculateLowerTen = (i * 15 * brickPerFeet);
-        } else if (i >= 11 && i <= 20) {
-            count1++;
-            calculateElevenToTwenty = (count1 * 12 * brickPerFeet);
-        } else if (i > 20) {
-            count2++;
-            calculateUpperTwenty = (count2 * 10 * brickPerFeet);
+    if (floor <= 0) {
+        return "You don't need any brick";
+    } else {
+        for (var i = 1; i <= floor; i++) {
+            if (i <= 10) {
+                calculateLowerTen = (i * 15 * brickPerFeet);
+            } else if (i >= 11 && i <= 20) {
+                count1++;
+                calculateElevenToTwenty = (count1 * 12 * brickPerFeet);
+            } else if (i > 20) {
+                count2++;
+                calculateUpperTwenty = (count2 * 10 * brickPerFeet);
+            }
         }
+        return (calculateLowerTen + calculateElevenToTwenty + calculateUpperTwenty);
     }
 
-    return (calculateLowerTen + calculateElevenToTwenty + calculateUpperTwenty);
 
 }
 
 //Tiny Friend
 
-// var friendsName = ["","","s","", "Khalid", "Sourav","", "Suba", "shafat", "   ", " ", " "];//
 var counter = 0;
-var friendName = tinyFriend(["","","s","", "Khalid", "Sourav","", "Suba", "shafat", "   ", " ", " "]);
-console.log("Tiny name is: ",friendName);
+var friendsName = tinyFriend(["", "", "s", "", "Khalid", "Sourav", "", "Suba", "shafat", "   ", " ", " "]);
+console.log("Tiny name is: ", friendsName);
 
 function tinyFriend(names) {
     var validNames = [];
